@@ -28,7 +28,7 @@ public class MemberCont {
         MemberDto memberDto=MemberDto.builder().m_id(m_id).m_pw(m_pw).build();
         boolean result= mSer.login(memberDto);
         if(result){
-            return "board/list";
+            return "member/board/list";
         }
         return "index";
     }

@@ -6,7 +6,7 @@
 <mapper namespace="com.example.board.dao.MemberDao">
 <!--sql문-->
 <select id="login" parameterType="MemberDto" resultType="boolean">
-    select count(*) from member where m_id=#{m_id} and m_pw={m_pw}
+    select count(*) from member where m_id=#{m_id} and m_pw=#{m_pw}
 
 
 </select>
