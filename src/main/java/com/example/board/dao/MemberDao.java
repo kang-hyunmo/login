@@ -11,4 +11,5 @@ public interface MemberDao {
    // @Select("select count(*) from member where m_id=#{m_id} and m_pw={m_pw}")
     boolean login(MemberDto memberDto);
 
+    boolean join(MemberDto memberDto);
 }
