@@ -11,9 +11,10 @@
     <script defer src="/js/common.js"></script>
     <script th:inline="javascript">
         const m=[[${msg}]]
+        const mb=[[${session.member}]]
         $(() => {
             msgPrint()
-            //loginStatus()
+            loginStatus()
 
             //bxSlider 설정용 스크립트
             $(".slider").bxSlider({

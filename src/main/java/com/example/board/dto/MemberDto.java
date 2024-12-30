@@ -20,4 +20,5 @@ public class MemberDto {
     private String m_point;
 
 
+
 }
