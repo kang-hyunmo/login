@@ -8,18 +8,19 @@
 <header th:fragment="header">
     <div class="top-bar">
         <div class="content">
-            <img src="/img/r-logo.jpg" class="top-left logo" alt="" onclick="goHome()">
+            <img th:src="@{/img/r-logo.jpg}" class="top-left logo" onclick="goHome()">
             <h2 class="top-left top-home">Web Board</h2>
             <nav class="top-right">
                 <ul>
+                    <!--                    <li class="suc" id="m_id">테스트님</li>-->
                     <li class="suc" id="m_name">테스트님</li>
-<!--                    <li class="suc">-->
-<!--                        <a href="/member/logout">Logout</a>-->
-<!--                    </li>-->
+                    <!--                    <li class="suc">-->
+                    <!--                        <a href="/member/logout">Logout</a>-->
+                    <!--                    </li>-->
                     <li class="suc">
-                    <form th:action="@{/member/logout}" method="post">
-                     <button>Logout</button>
-                    </form>
+                        <form th:action="@{/member/logout}" method="post">
+                            <button>Logout</button>
+                        </form>
                     </li>
                     <li class="bef"><a href="/member/login">Login</a></li>
                     <li class="bef"><a href="/member/join">Join</a></li>
@@ -27,19 +28,18 @@
             </nav>
         </div>
     </div>
-
 </header>
+
 <footer th:fragment="footer">
     <div class="footer-bar">
         <div class="content">
             <div class="fcontents">
                 <img class="footer-logo"
-                     src="/img/r-logo-v.png" alt="">
+                     src="/img/r-logo-v.png">
                 <span class="footer-txt">&copy; 반응형 웹기반 과정평가형 2024</span>
             </div>
         </div>
     </div>
-
 </footer>
 
 

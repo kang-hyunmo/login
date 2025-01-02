@@ -19,6 +19,6 @@ public class MemberDto {
     private String m_addr;
     private String m_point;
 
-
+    private String g_name;    //회원 등급
 
 }

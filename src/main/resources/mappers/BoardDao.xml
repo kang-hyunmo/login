@@ -2,9 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.board.dao.BoardDao">
     <insert id="insertDummyData">
-        insert into board values(null,#{b_title},#{b_content},#{b_id},default,default)
+        insert into board values(null,#{b_title},#{b_content},#{b_writer},default,default)
     </insert>
-    <select id="getBoardList" parameterType="HashMap" resultType="com.icia.board.dto.BoardDto">
-        select b_num, b_title, b_writer, b_date, b_views from board order by b_num desc limit #{startIndex}, #{pageSize}
+    <select id="getBoardList" parameterType="HashMap" resultType="com.example.board.dto.BoardDto">
+        select b_num, b_title, b_writer, b_date, b_views from board
+                                                         order by b_num desc limit #{startIndex}, #{pageSize}
+    </select>
+    <select id="getBoardListSearch" resultType="com.example.board.dto.BoardDto">
+        select b_num, b_title, b_writer, b_date, b_views from board
+        <if test="colname != null and colname != ''">
+            where ${colname} like concat('%',#{keyword},'%')
+        </if>
+
+        order by b_num desc
+        limit #{startIdx},#{listCnt}
+    </select>
+    <select id="getBoardListSearchNew" resultType="com.example.board.dto.BoardDto">
+        select b_num, b_title, b_writer, b_date, b_views from board
+        <choose>
+            <when test="keyword !=null and keyword != ''">
+                where ${colname} like concat('%',#{keyword},'%')
+            </when>
+        <otherwise>
+            order by b_num desc limit #{startIdx},#{listCnt}
+        </otherwise>
+        </choose>
+    </select>
+    <select id="getBoardCount" resultType="java.lang.Integer">
+        select count(*) from board
+        <if test="colname!=null and colname!=''">
+        where ${colname} like concat('%',#{keyword},'%')
+
+        </if>
     </select>
 </mapper>
