@@ -18,7 +18,7 @@ public class BoardDto {
     private String b_title;
     private String b_contents;
     private String b_writer;   //fk: m_id
-    //private String b_date;  //단순출력용
+    //private String b_dateString;  //단순출력용
     private LocalDateTime b_date;  //시간조작 편리
     private String b_views;
 }

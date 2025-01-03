@@ -2,6 +2,7 @@ package com.example.board.dao;
 
 import com.example.board.dto.BoardDto;
 import com.example.board.dto.SearchDto;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -26,4 +27,8 @@ public interface BoardDao {
     int getBoardCount(SearchDto sDto);
 
 
+    BoardDto getBoardDetail(Integer bNum);
+
+    @Delete("delete from board where b_num=#{bnum}")
+    boolean boardDelete(Integer bNum);
 }

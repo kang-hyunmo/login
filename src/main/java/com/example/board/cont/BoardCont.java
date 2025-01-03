@@ -1,13 +1,17 @@
 package com.example.board.cont;
 
 import com.example.board.dto.BoardDto;
+import com.example.board.dto.MemberDto;
+import com.example.board.dto.ReplyDto;
 import com.example.board.dto.SearchDto;
 import com.example.board.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -57,16 +61,54 @@ public class BoardCont {
         }
         return "redirect:/";
     }
-    @GetMapping("/detail/{bnum}")
-    public String detail(@PathVariable("bnum") Integer bnum, Model model) {
-        log.info("bnum: {}", bnum);
-        return null;
-    }
+//    @GetMapping("/detail/{bnum}")
+//    public String detail(@PathVariable("bnum") Integer bnum, Model model) {
+//        log.info("bnum: {}", bnum);
+//        return null;
+//    }
     @GetMapping("/detail")
     public String detailParam(@RequestParam("b_num") Integer b_num, Model model) {
         log.info("b_num: {}", b_num);
-        return null;
+        if (b_num==null || b_num<1) {
+            return "redirect:/board";
+
+        }
+        BoardDto board= bSer.getBoardDetail(b_num);
+        log.info("board: {}", board);
+        if(board==null){
+            return "redirect:/board";
+        }else {
+            model.addAttribute("board",board);
+            return "board/detail";
+        }
+
     }
+    @GetMapping("/delete")
+    public String boardDelete(@RequestParam("b_num") Integer b_num, RedirectAttributes rttr) {
+        log.info("delete b_num: {}", b_num);
+        if(b_num==null || b_num<1) {
+            return "redirect:/board";
+        }
+        if (bSer.boardDelete(b_num)){
+        rttr.addFlashAttribute("msg",b_num+"번 삭제 성공"); //한번만 출력
+        /*rttr.addAttribute("msg",b_num+"번 삭제 성공");*/ //여러번 출력
+        return "redirect:/board";
+        }else {
+            rttr.addAttribute("msg",b_num+"번 삭제 실패");
+            return "redirect:/board/detail?b_num="+b_num;
+        }
+
+    }
+    @PostMapping("/reply")
+    @ResponseBody
+    public String insertReply(@RequestBody ReplyDto replyDto, HttpSession session){
+        log.info("insert r_bnum: {}", replyDto.getR_bnum());
+        log.info("insert r_contents: {}", replyDto.getR_contents());
+        String id=((MemberDto)session.getAttribute("member")).getM_id();
+        log.info("insert r_writer: {}", id);
+        return "성공";
+    }
+
     @GetMapping("/write")
     public String write() {
         return "/board/write";

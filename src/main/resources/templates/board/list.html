@@ -15,11 +15,11 @@
         const member=[[${session.member}]]
         // if (m != null) {
         //     alert(m)
-        window.onload=()=>{
+            $(()=>{
             msgPrint()
             loginStatus()
 
-        }
+        })
 
     </script>
 
@@ -99,7 +99,7 @@
     </section>
     <th:block th:replace="~{fragments::footer}"></th:block>
     </div>
-    <script th:inline="javascrip">
+    <script th:inline="javascript">
         //검색기능 체크
         $('#search').click(function (){
             let  keyword=$('keyword').val();

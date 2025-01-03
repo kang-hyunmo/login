@@ -4,10 +4,12 @@ import com.example.board.dto.BoardDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+//@Transactional
 public class BoardDaoTest {
     @Autowired   //junit 테스트시 필드주입만 된다.
     private BoardDao boardDao;
@@ -17,7 +19,7 @@ public class BoardDaoTest {
         assertNotNull(boardDao);
     }
 
-    @Test
+    //@Test
     public void insertDummyDataTest(){
         BoardDto boardDto=new BoardDto();
         for(int i=1;i<=35;i++){
@@ -26,7 +28,7 @@ public class BoardDaoTest {
             boardDao.insertDummyData(boardDto);
         }
     }
-    @Test
+    //@Test
     public void findBoardListTest(){
         //assertEquals(35,boardDao.getBoardListAll().size());
         boardDao.getBoardListAll().stream().forEach(bDto -> System.out.println(bDto) );
