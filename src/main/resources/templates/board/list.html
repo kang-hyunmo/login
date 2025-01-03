@@ -88,9 +88,9 @@
                     </div>
                 </div>
                 <div class="btn-area">
-                    <div class="paging" th:utext="${paging}">
+                    <div class="paging" th:utext="${paging}"></div>
                     <button class="wr-btn" onclick="location.href='/board/write'">글쓰기 창열기</button>
-                    </div>
+
 
 
                 </div>
@@ -102,15 +102,16 @@
     <script th:inline="javascript">
         //검색기능 체크
         $('#search').click(function (){
-            let  keyword=$('keyword').val();
-            if(keyword===''){
+            let keyword=$('#keyword').val();
+            if(keyword==''){
                 alert('검색어 입력하세요')
                 return;
             }
             let  select=$('#sel').val();
-            if (select==='') return;
+            if (select=='') return;
             console.log(keyword,select);
-            location.href="/board?colname="+select+'&keyword='+keyword+"&pageNum=1"
+            location.href="/board?colName="+select+'&keyword='+keyword+"&pageNum=1"
+            //"localhost/board?colName=b_title&keyword=제목1&pageNum=1"
         })
 
     </script>

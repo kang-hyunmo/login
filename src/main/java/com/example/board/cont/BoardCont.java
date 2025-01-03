@@ -42,14 +42,15 @@ public class BoardCont {
 //        정적쿼리
 //        if (sDto.getColname()==null || sDto.getKeyword()==null){
 //            bList=bSer.getBoardList(sDto.getPageNum()); //페이징 클릭
-//        }else {
+//       }else {
 //            bList=bSer.getBoardList(sDto); //검색 클릭
 //        }
 
 
+
 //        동적쿼리
 //        bList=bSer.getBoardListSearch(sDto);
-        bList=bSer.getBoardListSearchNum(sDto);
+        bList=bSer.getBoardListSearchNew(sDto);
 
         if(bList!=null){
             //페이지 정보

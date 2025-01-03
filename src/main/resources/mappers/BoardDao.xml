@@ -10,18 +10,18 @@
     </select>
     <select id="getBoardListSearch" resultType="com.example.board.dto.BoardDto">
         select b_num, b_title, b_writer, b_date, b_views from board
-        <if test="colname != null and colname != ''">
-            where ${colname} like concat('%',#{keyword},'%')
+        <if test="colName != null and colName != ''">
+            where ${colName} like concat('%',#{keyword},'%')
         </if>
 
         order by b_num desc
         limit #{startIdx},#{listCnt}
     </select>
-    <select id="getBoardListSearchNew" resultType="com.example.board.dto.BoardDto">
+    <select id="getBoardListSearchNew" parameterType="SearchDto" resultType="com.example.board.dto.BoardDto">
         select b_num, b_title, b_writer, b_date, b_views from board
         <choose>
             <when test="keyword !=null and keyword != ''">
-                where ${colname} like concat('%',#{keyword},'%')
+                where ${colName} like concat('%',#{keyword},'%')
             </when>
         <otherwise>
             order by b_num desc limit #{startIdx},#{listCnt}
@@ -30,8 +30,8 @@
     </select>
     <select id="getBoardCount" resultType="java.lang.Integer">
         select count(*) from board
-        <if test="colname!=null and colname!=''">
-        where ${colname} like concat('%',#{keyword},'%')
+        <if test="colName!=null and colName!=''">
+        where ${colName} like concat('%',#{keyword},'%')
 
         </if>
     </select>

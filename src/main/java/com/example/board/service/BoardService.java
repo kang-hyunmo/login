@@ -42,8 +42,8 @@ public class BoardService {
         log.info("totalNum="+totalNum);
 
         String listUrl=null;
-        if (sDto.getColname()!=null){
-            listUrl="/board?colname="+sDto.getColname()+"&keyword="+sDto.getKeyword()+"&";
+        if (sDto.getColName()!=null){
+            listUrl="/board?colName="+sDto.getColName()+"&keyword="+sDto.getKeyword()+"&";
         }else {
             listUrl="/board?";
         }
@@ -57,10 +57,10 @@ public List<BoardDto> getBoardListSearch(SearchDto sDto) {
         return boardDao.getBoardListSearch(sDto);
 }
 
-    public List<BoardDto> getBoardListSearchNum(SearchDto sDto) {
+    public List<BoardDto> getBoardListSearchNew(SearchDto sDto) {
         Integer pageNum = sDto.getPageNum();
         sDto.setStartIdx((pageNum - 1) * sDto.getListCnt());
-        return boardDao.getBoardListSearch(sDto);
+        return boardDao.getBoardListSearchNew(sDto);
     }
 
     public BoardDto getBoardDetail(Integer bNum) {

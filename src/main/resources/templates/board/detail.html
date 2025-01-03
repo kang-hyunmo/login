@@ -7,6 +7,8 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script defer th:src="@{/js/common.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script th:inline="javascript">
 
     // $('#search').click(function (){
@@ -125,10 +127,13 @@
             location.href=`/board/delete?b_num=${bnum}`;
         }
     }
+
+
+
     function  backbtn(){
         location.href="/board"
     }
-
+     //ajax사용
     function replyInsert() {
         let data={};
         data.r_contents=$('#r_contents').val();
@@ -153,8 +158,44 @@
 
         }).done(res=>console.log('res:',res)) //성공 출력
          .fail(err=>console.log('err:',err));
-
     }
+    // axios 사용
+    // function replyInsert() {
+    //     let data = {};
+    //     data.r_contents = $('#r_contents').val();
+    //     data.r_bnum = $('#r_bnum').val();
+    //     data.r_writer = [[${session.member.m_id}]];
+    //     console.log('data', data);
+    //     axios.post('/board/reply', data)
+    //         .then(res=>console.log('res:',res)) //성공 출력
+    //         .catch(err=>console.log('err:',err));
+    // }
+    // axios 사용
+    // function replyInsert() {
+    //     let data={};
+    //     data.r_contents=$('#r_contents').val();
+    //     data.r_bnum=$('#r_bnum').val();
+    //     // data.r_writer=$('#r_writer').val();
+    //     data.r_writer=[[${session.member.m_id}]];
+    //     console.log('data',data);
+    //     axios({
+    //         method: 'post',
+    //         url: '/board/reply',
+    //
+    //
+    //         //json 자동변환 특수문자
+    //         data:data,
+    //         headers: {'Content-Type': 'application/json;charset=UTF-8'}
+    //         //data: JSON.stringify(data),
+    //
+    //         // contentType: "application/json;charset=UTF-8",
+    //
+    //
+    //     }).then(res=>console.log('res:',res)) //성공 출력
+    //         .catch(err=>console.log('err:',err));
+    // }
+
+
 </script>
 
 
