@@ -80,7 +80,6 @@
 
          <button class="btn-sub" onclick="backbtn()">B</button>
         </div>
-
         <!-- 댓글 입력 양식-->
         <form id="rform"  class="write-form" >
             <!-- 게시글 정보(글번호), 댓글 내용, 접속자(작성자) -->
@@ -145,7 +144,9 @@
             //dataType 생략가능
             // dataType: 'json', //text, mxl, jsonp
 
-            //json으로 받을시 특수문자 가능
+            //urlEncode(get,post) 특수문자 불가능
+            //contentType: "application/x-www-form-urlencoded", //기본값
+            //json으로(post) 받을시 특수문자 가능
             data: JSON.stringify(data),
             contentType: "application/json;charset=UTF-8",
 
